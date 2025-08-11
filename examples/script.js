@@ -380,6 +380,7 @@ function check (){
       rej("number is small")
     }
   })
+  
 }
 
 check ().then(function(vi){
@@ -388,5 +389,108 @@ check ().then(function(vi){
 .catch(function (ho){
   console.log(ho);
 })
+
+
+
+
+
+//ajax....
+
+  let btn = document.querySelector("#btn")
+
+ btn.addEventListener("click", function (){
+   fetch('https://jsonplaceholder.typicode.com/todos/1')
+ .then(res => res.json())
+ .then(data => {
+   document.querySelector("#btw").textContent = JSON.stringify(data);
+ })
+ .catch(error => console.error(error))
+ }) 
+
+
+// old style.......
+
+ function load(){
+     let xh = new XMLHttpRequest();
+     xh.onreadystatechange = function (){
+         if(this.readyState === 4 && this.status == 200){
+             document.getElementById("demo").innerHTML = this.responseText;
+         }else if(this.readyState === 4 && this.status == 404){
+             document.getElementById("demo").innerHTML = "file not found"
+         }
+     }
+
+     xh.open("GET","file.text" , true);
+     xh.send();
+
+ }
+
+
+
+
+//
+
+
+let a =  fetch ('https://dummyjson.com/ip')
+a.then((value) => {
+  return value.json();
+}).then((value) => {
+  console.log(value);
+})
+
+
+
+//post request..
+
+
+fetch('https://jsonplaceholder.typicode.com/posts', {
+  method: 'POST',
+  headers: {
+    "Content-type" : "application/json"
+
+  },
+  body: JSON.stringify({
+    title: 'Aditya',
+    body: 'bhai',
+    userId: 1,
+  }),
+})
+  .then((response) => response.json())
+  .then((json) => console.log(json));
+
+
+
+
+  //
+
+
+fetch('https://jsonplaceholder.typicode.com/posts/1/comments')
+.then((res) => res.json())
+.then((data) => console.log(data))
+
+
+//
+
+
+
+
+fetch("https://jsonplaceholder.typicode.com/posts/5")
+.then(res => {
+
+  if(!res.ok){
+    throw ("error")
+
+
+  }
+  return res.json();
+
+})
+.then(data => {
+  console.log(data);
+})
+.catch(error =>{
+  console.error("error", error)
+})
+
 
 
