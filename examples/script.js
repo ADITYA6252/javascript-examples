@@ -494,3 +494,20 @@ fetch("https://jsonplaceholder.typicode.com/posts/5")
 
 
 
+//
+
+
+function messages (){
+  fetch("https://jsonplaceholder.typicode.com/comments?")
+  .then(res => res.json())
+  .then(data => {
+    document.querySelector("#msg").textContent = data[3].email
+  })
+
+  .catch(err => console.error("error", err))
+
+}
+
+messages();
+
+
